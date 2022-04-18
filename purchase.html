@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="this is the purchase and donate page">
+    <title>Purchase And Donate Page</title>
+    <!--insert normalize style sheet-->
+    <link rel="stylesheet" href="css/purchase.css">
+</head>
+<body>
+    <div class="container1">
+        <div class="navbar">
+            <img src="images/logo.jpg" class="logo">
+            <nav>
+                <ul>
+                    <li><a href="./index.html">Homepage</a></li>
+                    <li><a href="./animals&plants.html">Animals and Plants</a></li>
+                    <li><a href="./activities.html">Activities</a></li>
+                    <li><a href="./purchase.html">Purchase and Donate</a></li>
+                    <li><a href="./contactus.html">Contact Us</a></li>
+                </ul>
+            </nav>
+        </div><br><br>
+<!-------------------------------------------------------------------INTRO----------------------------------------------------------------->
+        <main>
+            <article id="article1">
+                <section>
+                    <h1><u>LET'S INSPIRE CURIOSITY, COMPASSION AND CREATIVITY</u></h1><br>
+                    <p><mark>The greatest wildlife adventure right here! Choose the most convenient day for you and bring your friends/family!!!</mark></p><br>
+                    <p><mark>A special membership facility available for anyone wanting to visit the zoo within 12 months.</mark></p><br><br>
+                    <div id="container2">
+                        <div id="content">
+                            <h2>--ZOO MEMBERSHIP--</h2><br>
+                            <img src="images/membership.jpg" alt="zooPic"><br><br>
+                            <p><b><i>Help conserve wildlife by making a membership transaction.<br>Choose from a range of entrance options and advantages based on your membership level of choice.</i></b></p>
+                        </div><br><br>
+                        <div id="content">
+                            <h2>--TICKET PRICES--</h2><br>
+                            <img src="images/tickets.jpg" alt="zooTicket"><br><br>
+                            <ul id="tickets_ul"><br>
+                                <li>Day pass per adult: <b>LKR 1000</b></li>
+                                <li>Day pass per child: <b>LKR 500</b></li>
+                                <li>Student pass per adult(graduate students who follow a degree in Sri Lanka-Ms.c/Phd): <b>LKR 500</b></li>
+                                <li>Student pass per child(under 18: government schools' students): <b>LKR 250</b></li>
+                                <li>Foreign pass(adult): <b>LKR 5000</b></li>
+                                <li>Foreign pass(child): <b>LKR 2500</b></li><br>
+                            </ul>
+                        </div>
+                    </div>
+                </section>
+            </article><br><br>
+    
+<!-------------------------------------------------------------------PURCHASE PART----------------------------------------------------------------->
+            <article id="article2">
+                <div id="ticket"></div>
+                <section id="purchase">
+                    <h1><u>PURCHASE TICKETS</u></h1><br>
+                    <div class="styleForForms">
+                        <form id="form1">
+                        <label for="choice"><span>Choice of ticket:</span></label><br>
+                        <select id="choice" onchange="calculateTotalCost();">
+                            <option value="">Choose your preferance</option>
+                            <option value="0">Day pass</option>
+                            <option value="1">Student pass</option>
+                            <option value="2">Foreign pass</option>
+                        </select><br><br>
+                        <!--adult-->
+                        <label for="adult"><span>Adult admissions</span></label><br>
+                        <input type="number" id="numberOfAdults" name="adultAd" min="0" maxlength="3" value="0" onchange="calculateTotalCost();"><br><br>
+
+                        <!--child/student-->
+                        <label for="child"><span>Student/child admissions</span></label><br>
+                        <input type="number" id="numberOfChildren" name="childAd" min="0" maxlength="3" value="0" onchange="calculateTotalCost();" ><br><br>
+                        
+                        <!--date-->
+                        <label for="date"><span>Date</span></label>
+                        <input type="date" id="date"><br><br>
+                        
+                        <!--duration-->
+                        <label for="duration"><span>Duration</span></label>
+                        <select id="duration" onchange="calculateTotalCost ();">
+                            <option value="0">3 hours</option>
+                            <option value="1">1/2 day/12 hrs</option>
+                            <option value="2">Full day/24 hrs</option>
+                            <option value="3">2 days/48 hrs</option>
+                        </select><br><br>
+                        
+                        <!--annual pass-->
+                        <label for="annualPass"><span>Annual pass</span></label><br>
+                        <input type="number" id="noOfPasses" name="annualPass" min="0" maxlength="3" value="0" onchange="calculateTotalCost();"><br><br>
+                        
+                        <!--food token-->
+                        <label for="foodTokens"><span>Food tokens</span></label><br>
+                        <input type="number" id="noOfTokens" name="foodToken" min="0" maxlength="3" value="0" onchange="calculateTotalCost();"><br><br>
+    
+                        <!--outlay/cost-->
+                        <div id="outlay">
+                            <p>Outlay</p><p>0.00</p><br><br>
+                        </div>
+                        <input type="button" value="Add to order" onclick="addToOrder();"><br><br>
+    
+    
+                        <div id="bookingInvoice" style="display:none;">
+                            <table id="invoice" border="5">
+                                <thead>
+                                <tr id="head">
+                                    <th>CHOICE</th>
+                                    <th>DATE</th>
+                                    <th>DURATION</th>
+                                    <th>ADULTS</th>
+                                    <th>CHILDREN</th>
+                                    <th>TOTAL</th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody id="tbody"></tbody>
+                            <tfoot id="tfoot">
+                                <tr>
+                                    <td id="annualPass" colspan="3">Annual passes</td>
+                                    <td colspan="2" id="Annual">0</td>
+                                    <td id="annualOutlay">0.00</td>
+                                    <td id="clearPass"></td>
+                                </tr>
+                                <tr>
+                                    <td id="foodToken" colspan="3">Food tokens</td>
+                                    <td colspan="2" id="Food">0</td>
+                                    <td id="foodOutlay">0.00</td>
+                                    <td id="clearToken"></td>
+                                </tr>
+                                <tr>
+                                    <th id="grandTotal" colspan="5">Grand Total</th>
+                                    <th id="grandTotalOutlay">0.00</th>
+                                </tr>
+                            </tfoot>
+                            </table>
+    
+                            <input type="button" value="Place Order" onclick="placeOrder(this.parentElement);"><br><br>
+                        </div>
+                        </form>
+                    </div>
+                </section><br><br>
+<!-----------------------------------------------------------------------DONATE PART-------------------------------------------------------------->            
+<div id="donate"></div>
+<section id="donate">
+    <h1><u>DONATE</u></h1>
+    <p id="P">Both equipment or cash donations are accepted!</p><br>
+    <div id="form2">
+        <form id="donateForm">
+            <div id="donate">
+                <h2><u>ENTER DETAILS</u></h2><br>
+            </div>
+<div id="donateFormContent">
+            <!--button for donations-->
+            <div id="donateButton">
+                <label for="year"><span>Choose amount</span></label><br>
+                <select id="quota" onchange="donateQuota();">
+                    <option value="Choose your preferance">Choose amount</option>
+                    <option value="100"><b>LKR 100</b></option>
+                    <option value="250"><b>LKR 250</b></option>
+                    <option value="500"><b>LKR 500</b></option>
+                    <option value="1000"><b>LKR 1000</b></option>
+                    <option value="2500"><b>LKR 2500</b></option>
+                    <option value="5000"><b>LKR 5000</b></option>
+                    <option value="10000"><b>LKR 10000</b></option>
+                </select>
+            </div><br>
+
+            <div id="donateForm">
+                <!--first name-->
+                <div class="field">
+                    <label for="fname"><span>Full name</span></label><br>
+                    <input type="text" id="fname" maxlength="35" value="">
+                </div><br>
+
+                <!--resident address-->
+                <div class="field">
+                    <label for="rAddr"><span>Resident address</span></label><br>
+                    <input type="text" id="rAddr" maxlength="45" value="">
+                </div><br>
+
+                <!--credit card No-->
+                <div class="field">
+                    <label for="CCNo"><span>Credit Card number</span></label><br>
+                    <input type="text" id="CCNo" maxlength="16" value="">
+                </div><br>
+
+                <!--PIN No(4 digits)-->
+                <div class="field">
+                    <label for="PIN"><span>PIN number</span></label><br>
+                    <input type="text" id="PIN" maxlength="4" value="">
+                </div><br>
+
+                <input id="makeD" type="button" value="Make donation" onclick="makeDonation();">
+
+                <p id="details" style="display: none;"></p>
+
+                <input id="confirm" type="button" value="Confirm donation" style="display: none;" onclick="confirmDonation();">
+            </div>
+        </form>
+    </div>
+</div>   
+</section>
+</article>
+</main>
+<br>
+        <footer class="info">
+            <h1>Dehiwala Zoo</h1><br>
+            <h2><a href="https://www.google.com/maps/place/Dehiwala+Zoological+Garden/@6.8569811,79.8722138,17z/data=!3m1!4b1!4m5!3m4!1s0x3ae25baace050325:0xfd90f5bffd93f59f!8m2!3d6.8569811!4d79.8744025">Visit Us</a></h2><br>
+            <h3>120 Galvihara Rd, Dehiwala-Mount Lavinia.</h3><br>
+            <h3><a href="./contactus.html">Contact Us</a></h3><br>
+            <h3>Email Us: zoosl@slt.lk</h3><br>
+            <h4>Copyright @ 2021 Dehiwala Zoo. Designed by Annika Lara Gray</h4>
+        </footer>
+        <script src="scripts/script.js"></script>    
+</body>
